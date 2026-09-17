@@ -10,6 +10,11 @@
 }
 
 body {
-  font-family: 'Sora Variable', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter Variable', system-ui, sans-serif;
   background-color: var(--color-azure);
+}
+
+article {
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 400;
 }

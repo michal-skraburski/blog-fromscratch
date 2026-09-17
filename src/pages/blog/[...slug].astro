@@ -15,14 +15,14 @@ const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title}>
-	<article class="mt-8">
-		<h1 class="text-3xl font-bold text-sky-600">{post.data.title}</h1>
-		<p class="mt-1 text-sm text-slate-500">
+	<article class="pl-2 mt-8">
+		<h1 class="text-3xl font-bold text-emerald">{post.data.title}</h1>
+		<p class="pl-2 mt-1 text-sm text-inkblack">
 			<time datetime={post.data.pubDate.toISOString()}>
 				{post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
 			</time>
 		</p>
-		<div class="mt-6 space-y-4">
+		<div class="pl-2 mt-6 space-y-4 text-black">
 			<Content />
 		</div>
 	</article>

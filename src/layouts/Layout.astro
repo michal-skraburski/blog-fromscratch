@@ -4,8 +4,11 @@ import '../styles/global.css';
 interface Props {
 	title?: string;
 }
-// Supports weights 100-800
-import '@fontsource-variable/sora/wght.css';
+// Supports weights 100-900
+import '@fontsource-variable/inter/wght.css';
+// IBM Plex Serif (static) — article display
+import '@fontsource/ibm-plex-serif/400.css';
+import '@fontsource/ibm-plex-serif/700.css';
 
 const { title = 'from scratch -' } = Astro.props;
 ---
@@ -22,7 +25,7 @@ const { title = 'from scratch -' } = Astro.props;
   <body>
     <div class="max-w-5xl mx-auto">
     <div class="header mt-2">
-  	  <h1 class="text-3xl font-bold text-paprika">from scratch</h1>
+  	  <h1 class="text-4xl font-bold text-paprika">from scratch</h1>
     </div>
       <slot/>
     </div>
