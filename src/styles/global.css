@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+  --color-paprika: #e4572e;
+  --color-emerald: #0b6e4f;
+  --color-azure: #ECF8F8;
+  --color-black: #010400;
+  --color-inkblack: #040F0F;
+
+}
+
+body {
+  font-family: 'Sora Variable', sans-serif;
+  background-color: var(--color-azure);
+}
