@@ -3,4 +3,18 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Home">
+  <div class="flex flex-col items-center mt-4 italic">
+      hyperlinks
+    <div class="flex flex-col items-center border mt-1 rounded mx-4">
+      <div class="border-b py-4 w-max px-2 min-w-max">
+        <a class="hyperlink" href="/blog">blogs</a>
+      </div>
+      <div class="border-b py-4 w-max mx-4 px-2 min-w-max">
+        <a class="hyperlink" href="tools">bookmarks & tools</a>
+      </div>
+      <div class="py-4">
+        <a class="hyperlink" href="inspo">inspirations</a>
+      </div>
+    </div> 
+  </div>
 </Layout>

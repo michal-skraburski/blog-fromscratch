@@ -2,13 +2,19 @@
 
 @theme {
   --color-paprika: #e4572e;
-  --color-emerald: #0b6e4f;
+  --color-choco: #DD7230;
   --color-azure: #ECF8F8;
   --color-black: #010400;
   --color-inkblack: #040F0F;
 
 }
+@utility hyperlink {
+  @apply text-blue-600 italic;
 
+  &:hover {
+    color:var(--color-choco);
+  }
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter Variable', system-ui, sans-serif;
   background-color: var(--color-azure);

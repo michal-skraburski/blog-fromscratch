@@ -16,7 +16,7 @@ const { Content } = await render(post);
 
 <Layout title={post.data.title}>
 	<article class="pl-2 mt-8">
-		<h1 class="text-3xl font-bold text-emerald">{post.data.title}</h1>
+		<h1 class="text-3xl font-bold text-choco">{post.data.title}</h1>
 		<p class="pl-2 mt-1 text-sm text-inkblack">
 			<time datetime={post.data.pubDate.toISOString()}>
 				{post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
