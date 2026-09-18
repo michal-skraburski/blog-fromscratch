@@ -1,19 +1,8 @@
 services:
-  # TLS terminates at Cloudflare; cloudflared forwards plain HTTP to this.
-  # Point the tunnel's public hostname at http://<host>:80.
-  traefik:
-    image: traefik:v3.1
-    restart: unless-stopped
-    command:
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-
-  web:
+  # Static site served by nginx. Discovered by the Traefik instance that
+  # already runs on this host via the labels below + the shared network.
+  # TLS terminates at Cloudflare; Traefik routes plain HTTP to this.
+  nginx:
     # In CI/deploy this pulls the registry image; locally `docker compose build`
     # will build from the Dockerfile instead.
     image: ${CI_REGISTRY_IMAGE:-blog}:${IMAGE_TAG:-latest}
@@ -22,8 +11,17 @@ services:
     restart: unless-stopped
     expose:
       - "80"
+    networks:
+      - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.blog.rule=Host(`${SITE_DOMAIN}`)"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.blog.rule=Host(`skraburski.com`)"
       - "traefik.http.routers.blog.entrypoints=web"
-      - "traefik.http.services.blog.loadbalancer.server.port=80"
+      - "traefik.http.routers.blog.service=blog"
+      - "traefik.http.services.blog.loadbalancer.server.port=8082"
+
+networks:
+  # The network the existing Traefik container is attached to.
+  proxy:
+    external: true
