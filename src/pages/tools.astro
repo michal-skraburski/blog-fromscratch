@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const tools = (await getCollection('tools')).sort((a, b) =>
+	a.data.title.localeCompare(b.data.title),
+);
+---
+
+<Layout title="Bookmarks & tools" mod="bookmarks & tools">
+	<section class="mt-8">
+		<ul class="mt-6 space-y-6">
+			{
+				tools.map((tool) => (
+					<li>
+						<a
+							href={tool.data.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group block"
+						>
+							<h2 class="text-xl font-semibold text-inkblack group-hover:text-choco">
+								{tool.data.title}
+							</h2>
+							{tool.data.description && (
+								<p class="mt-1 text-inkblack/80">{tool.data.description}</p>
+							)}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Layout>
