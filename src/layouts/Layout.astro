@@ -25,8 +25,8 @@ const { title = 'from scratch -', mod = ''} = Astro.props;
 		<title>{title}</title>
 	</head>
   <body class="flex flex-col min-h-svh">
-    <div class="w-full max-w-3xl mx-auto grow sans">
-      <div class="header mt-6">
+    <div class="w-full max-w-3xl mx-auto grow">
+      <div class="header mt-6 sans">
         <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
       </div>
       <slot/>
