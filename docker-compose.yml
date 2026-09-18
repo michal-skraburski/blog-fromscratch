@@ -5,6 +5,7 @@ services:
   nginx:
     # In CI/deploy this pulls the registry image; locally `docker compose build`
     # will build from the Dockerfile instead.
+    container_name: blog_fromscratch_nginx
     image: ${CI_REGISTRY_IMAGE:-blog}:${IMAGE_TAG:-latest}
     build:
       context: .
