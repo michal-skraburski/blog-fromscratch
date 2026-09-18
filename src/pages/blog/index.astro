@@ -12,8 +12,8 @@ const posts = (await getCollection('blog')).sort(
 		<ul class="mt-6 space-y-6">
 			{
 				posts.map((post) => (
-					<li class="flex items-start gap-3">
-						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-inkblack/40"></span>
+					<li class="group flex items-start gap-3">
+						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-inkblack/40 transition-colors group-hover:border-choco group-hover:bg-choco"></span>
 						<a href={`/blog/${post.id}`} class="group block">
 							<h2 class="text-xl font-semibold text-inkblack group-hover:text-choco">
 								{post.data.title}

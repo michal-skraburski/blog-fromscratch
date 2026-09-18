@@ -12,8 +12,8 @@ const tools = (await getCollection('tools')).sort((a, b) =>
 		<ul class="mt-6 space-y-6">
 			{
 				tools.map((tool) => (
-					<li class="flex items-start gap-3">
-						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-inkblack/40"></span>
+					<li class="group flex items-start gap-3">
+						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-inkblack/40 transition-colors group-hover:border-choco group-hover:bg-choco"></span>
 						<a
 							href={tool.data.url}
 							target="_blank"
