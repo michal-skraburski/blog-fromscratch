@@ -12,7 +12,7 @@ services:
     expose:
       - "80"
     networks:
-      - traefik
+      - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
