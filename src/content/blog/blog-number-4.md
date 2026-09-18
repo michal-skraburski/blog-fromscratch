@@ -1,6 +1,6 @@
 ---
-title: Coffee, and the ritual of shipping
-description: On slow mornings, small habits, and why the boring routine is the productive one.
+title: Placeholder
+description: Placeholder
 pubDate: 2026-07-08
 ---
 
