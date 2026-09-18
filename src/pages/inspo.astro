@@ -8,11 +8,12 @@ const inspirations = (await getCollection('inspo')).sort((a, b) =>
 ---
 
 <Layout title="Inspirations" mod="inspirations">
-	<section class="mt-8">
-		<ul class="mt-6 mx-20 space-y-6">
+	<section class="mt-8 mx-5">
+		<ul class="mt-6 space-y-6">
 			{
 				inspirations.map((item) => (
-					<li>
+					<li class="flex items-start gap-3">
+						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-inkblack/40"></span>
 						<a
 							href={item.data.url}
 							target="_blank"
