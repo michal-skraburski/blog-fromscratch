@@ -10,6 +10,7 @@ import '@fontsource-variable/inter/wght.css';
 // IBM Plex Serif (static) — article display
 import '@fontsource/ibm-plex-serif/400.css';
 import '@fontsource/ibm-plex-serif/700.css';
+import SocialLinks from '../components/SocialLinks.astro';
 
 const { title = 'from scratch -', mod = ''} = Astro.props;
 ---
@@ -31,11 +32,19 @@ const { title = 'from scratch -', mod = ''} = Astro.props;
       <slot/>
     </div>
     <div class="flex footer mb-4 pt-4 border-t not-italic">
-      <div class="mx-auto flex gap-2">
+      <div class="mx-auto flex items-center gap-4">
         <a class="hyperlink not-italic" href="back">< Back</a>
-        <a class="hyperlink not-italic" href="https://www.github.com/michal-skraburski">github</a>
-        <a class="hyperlink not-italic" href="https://www.linkedin.com/in/michalskraburski">linkedin</a>
-        <a class="hyperlink not-italic" href="webring">webring</a>
+        <SocialLinks linkClass="hyperlink not-italic" iconClass="w-5 h-5" />
+        <a class="hyperlink not-italic" href="webring" aria-label="Webring">
+          <svg class="w-6 h-6" viewBox="4.5 4.5 15 15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <g transform="rotate(18 12 12)">
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="7" r="2.2" fill="currentColor" stroke="none"></circle>
+              <circle cx="16.33" cy="14.5" r="2.2" fill="currentColor" stroke="none"></circle>
+              <circle cx="7.67" cy="14.5" r="2.2" fill="currentColor" stroke="none"></circle>
+            </g>
+          </svg>
+        </a>
         <a class="hyperlink not-italic" href="next"> Next ></a>
       </div>
     </div>
