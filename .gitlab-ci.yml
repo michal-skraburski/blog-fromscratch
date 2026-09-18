@@ -22,11 +22,16 @@ build:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-# Runs directly on a runner that lives ON the deploy host (shell/docker
-# executor), so docker + compose talk to the host's own daemon. Tag that
-# runner `deploy` in GitLab (Settings > CI/CD > Runners).
+# Runs on a runner that lives ON the deploy host so docker + compose talk to
+# the host's own daemon. Tag that runner `deploy` (Settings > CI/CD > Runners).
+# The `docker:27` image ships the docker CLI + compose plugin.
+# NOTE: the runner must expose the host Docker socket to this job, e.g. in the
+# runner's config.toml:
+#   [runners.docker]
+#   volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
 deploy:
   stage: deploy
+  image: docker:27
   tags:
     - deploy
   before_script:
