@@ -9,7 +9,7 @@ const posts = (await getCollection('blog')).sort(
 
 <Layout title="Blog" mod="blogs">
 	<section class="mt-8">
-		<ul class="mt-6 space-y-6">
+		<ul class="mt-6 space-y-6 mx-20">
 			{
 				posts.map((post) => (
 					<li>
