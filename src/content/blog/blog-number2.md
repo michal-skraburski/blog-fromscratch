@@ -1,7 +1,7 @@
 ---
-title: Starting from scratch
-description: Why I finally built my own corner of the web instead of posting into the void.
-pubDate: 2026-01-12
+title: The case for variable fonts
+description: One file, every weight — how variable fonts quietly cleaned up my type stack.
+pubDate: 2026-03-04
 ---
 
 Welcome to the scrapbook. This is the first entry — a place for code and

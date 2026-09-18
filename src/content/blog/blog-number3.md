@@ -1,7 +1,7 @@
 ---
-title: Starting from scratch
-description: Why I finally built my own corner of the web instead of posting into the void.
-pubDate: 2026-01-12
+title: Chasing the scrollbar jump
+description: A tiny layout shift, a surprisingly deep rabbit hole into flexbox and auto margins.
+pubDate: 2026-05-21
 ---
 
 Welcome to the scrapbook. This is the first entry — a place for code and

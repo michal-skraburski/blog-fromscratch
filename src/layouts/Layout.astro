@@ -2,7 +2,8 @@
 import '../styles/global.css';
 
 interface Props {
-	title?: string;
+  title?: string;
+  mod?: string;
 }
 // Supports weights 100-900
 import '@fontsource-variable/inter/wght.css';
@@ -10,7 +11,7 @@ import '@fontsource-variable/inter/wght.css';
 import '@fontsource/ibm-plex-serif/400.css';
 import '@fontsource/ibm-plex-serif/700.css';
 
-const { title = 'from scratch -' } = Astro.props;
+const { title = 'from scratch -', mod = ''} = Astro.props;
 ---
 
 <html lang="en">
@@ -25,8 +26,7 @@ const { title = 'from scratch -' } = Astro.props;
   <body class="flex flex-col min-h-svh">
     <div class="w-full max-w-3xl mx-auto grow">
       <div class="header mt-6">
-        <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none">from scratch</a>
-
+        <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
       </div>
       <slot/>
     </div>
