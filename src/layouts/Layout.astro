@@ -25,13 +25,24 @@ const { title = 'from scratch -', mod = ''} = Astro.props;
 		<title>{title}</title>
 	</head>
   <body class="flex flex-col min-h-svh">
-    <div class="w-full max-w-3xl mx-auto grow">
+    <div class="w-full max-w-3xl mx-auto grow sans">
       <div class="header mt-6">
         <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
       </div>
       <slot/>
     </div>
-    <div class="flex footer mb-4 pt-4 border-t not-italic">
+    <svg
+      class="fixed top-1/2 right-0 -translate-y-1/2 w-20 h-40 text-inkblack/70 pointer-events-none select-none"
+      viewBox="0 0 100 200"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="0.5"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="M92 2 C 64 34, 96 62, 68 92 C 44 118, 82 138, 58 168 C 44 186, 60 194, 74 200" />
+    </svg>
+    <div class="flex footer mb-4 pt-4 border-t not-italic sans">
       <div class="mx-auto flex items-center gap-4">
         <a class="hyperlink not-italic" href="back">< Back</a>
         <SocialLinks linkClass="hyperlink not-italic" iconClass="w-5 h-5" />
