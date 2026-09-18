@@ -1,0 +1,16 @@
+node_modules
+dist
+.astro
+.git
+.gitignore
+.gitlab-ci.yml
+Dockerfile
+docker-compose.yml
+.dockerignore
+.vscode
+.idea
+.DS_Store
+.env
+.env.*
+npm-debug.log*
+pnpm-debug.log*
