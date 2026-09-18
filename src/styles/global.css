@@ -15,8 +15,12 @@
     color:var(--color-choco);
   }
 }
-body {
+.sans {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter Variable', system-ui, sans-serif;
+}
+
+body {
+  font-family: 'IBM Plex Serif', serif;
   background-color: var(--color-azure);
 }
 
