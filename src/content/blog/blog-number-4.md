@@ -2,6 +2,7 @@
 title: Placeholder
 description: Placeholder
 pubDate: 2026-07-08
+project: from-scratch
 ---
 
 Welcome to the scrapbook. This is the first entry — a place for code and

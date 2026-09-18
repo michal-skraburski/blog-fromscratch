@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -12,6 +12,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const project = post.data.project ? await getEntry(post.data.project) : undefined;
 ---
 
 <Layout title={post.data.title} mod="blogs">
@@ -21,6 +22,16 @@ const { Content } = await render(post);
 			<time datetime={post.data.pubDate.toISOString()}>
 				{post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
 			</time>
+			{
+				project && (
+					<>
+						{' · '}
+						<a href={`/projects/${project.id}`} class="hyperlink not-italic">
+							{project.data.title}
+						</a>
+					</>
+				)
+			}
 		</p>
 		<div class="pl-2 mt-6 space-y-4 text-black">
 			<Content />

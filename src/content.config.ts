@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
@@ -7,6 +7,17 @@ const blog = defineCollection({
 		title: z.string(),
 		description: z.string().optional(),
 		pubDate: z.coerce.date(),
+		// Optional: attach this post to a project in the `projects` collection.
+		project: reference('projects').optional(),
+	}),
+});
+
+const projects = defineCollection({
+	loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string().optional(),
+		pubDate: z.coerce.date().optional(),
 	}),
 });
 
@@ -29,4 +40,4 @@ const inspo = defineCollection({
 	}),
 });
 
-export const collections = { blog, tools, inspo };
+export const collections = { blog, tools, inspo, projects };

@@ -1,0 +1,68 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	const posts = await getCollection('blog');
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: {
+			project,
+			// Blogs whose `project` reference points at this project.
+			posts: posts
+				.filter((post) => post.data.project?.id === project.id)
+				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+		},
+	}));
+}
+
+const { project, posts } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.title} mod="projects">
+	<article class="pl-2 mt-8">
+		<h1 class="text-3xl font-bold text-choco">{project.data.title}</h1>
+		{
+			project.data.pubDate && (
+				<p class="pl-2 mt-1 text-sm text-inkblack">
+					<time datetime={project.data.pubDate.toISOString()}>
+						{project.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
+					</time>
+				</p>
+			)
+		}
+		<div class="pl-2 mt-6 space-y-4 text-black">
+			<Content />
+		</div>
+
+		{
+			posts.length > 0 && (
+				<section class="pl-2 mt-10">
+					<h2 class="text-sm font-semibold uppercase tracking-wide text-inkblack/50">
+						Posts
+					</h2>
+					<ul class="mt-4 space-y-4">
+						{posts.map((post) => (
+							<li class="group flex items-start gap-3">
+								<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-inkblack/40 transition-colors group-hover:border-choco group-hover:bg-choco" />
+								<a href={`/blog/${post.id}`} class="group block">
+									<span class="font-semibold text-inkblack group-hover:text-choco">
+										{post.data.title}
+									</span>
+									<time
+										datetime={post.data.pubDate.toISOString()}
+										class="block text-sm text-inkblack/60"
+									>
+										{post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
+									</time>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+	</article>
+</Layout>

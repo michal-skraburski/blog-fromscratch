@@ -5,6 +5,11 @@ import Layout from '../../layouts/Layout.astro';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Map project id -> title, to tag each post with its project.
+const projectTitles = new Map(
+	(await getCollection('projects')).map((p) => [p.id, p.data.title]),
+);
 ---
 
 <Layout title="Blog" mod="blogs">
@@ -18,12 +23,16 @@ const posts = (await getCollection('blog')).sort(
 							<h2 class="text-xl font-semibold text-inkblack group-hover:text-choco">
 								{post.data.title}
 							</h2>
-							<time
-								datetime={post.data.pubDate.toISOString()}
-								class="text-sm text-inkblack/60"
-							>
-								{post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
-							</time>
+							<div class="text-sm text-inkblack/60">
+								<time datetime={post.data.pubDate.toISOString()}>
+									{post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
+								</time>
+								{post.data.project && projectTitles.has(post.data.project.id) && (
+									<span class="ml-2 rounded-full border border-inkblack/20 px-2 py-0.5 text-xs text-inkblack/70">
+										{projectTitles.get(post.data.project.id)}
+									</span>
+								)}
+							</div>
 							{post.data.description && (
 								<p class="mt-1 text-inkblack/80">{post.data.description}</p>
 							)}
