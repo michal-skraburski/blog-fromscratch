@@ -22,12 +22,22 @@ const { title = 'from scratch -' } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-  <body>
-    <div class="max-w-3xl mx-auto">
-    <div class="header mt-2">
-      <a href="/" class="text-4xl font-bold text-paprika cursor-pointer select-none">from scratch</a>
-    </div>
+  <body class="flex flex-col min-h-svh">
+    <div class="max-w-3xl mx-auto grow">
+      <div class="header mt-6">
+        <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none">from scratch</a>
+
+      </div>
       <slot/>
+    </div>
+    <div class="flex footer mb-4 pt-4 border-t not-italic">
+      <div class="mx-auto flex gap-2">
+        <a class="hyperlink not-italic" href="back">< Back</a>
+        <a class="hyperlink not-italic" href="https://www.github.com/michal-skraburski">github</a>
+        <a class="hyperlink not-italic" href="https://www.linkedin.com/in/michalskraburski">linkedin</a>
+        <a class="hyperlink not-italic" href="webring">webring</a>
+        <a class="hyperlink not-italic" href="next"> Next ></a>
+      </div>
     </div>
 	</body>
 </html>
