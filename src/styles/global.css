@@ -73,6 +73,9 @@
 html {
     scrollbar-width: thin;
     scrollbar-color: #f09 transparent;
+    /* Reserve the scrollbar gutter on both sides so centered content doesn't
+       shift between short (no scrollbar) and long (scrollbar) pages. */
+    scrollbar-gutter: stable both-edges;
     @media ( prefers-reduced-motion: no-preference ) {
         interpolate-size: allow-keywords;
     }
@@ -133,7 +136,6 @@ body {
   font-family: 'IBM Plex Serif', serif;
   background-color: var(--color-bg);
   color: var(--color-text);
-  scrollbar-gutter: stable;
   -webkit-font-smoothing: antialiased;
 }
 
