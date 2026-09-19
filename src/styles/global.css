@@ -9,6 +9,7 @@
   --ink: #040F0F;
   --white: #ffffff;
   --teal-50: #f0fdfa;
+  --blue: #2563eb;
 }
 
 /* Semantic tokens. Override these per theme to hot-swap dark/light. */
@@ -20,15 +21,21 @@
   --strong: var(--near-black);
   --accent: var(--paprika);
   --accent-2: var(--choco);
+  /* Hyperlinks: blue by default, orange on hover. */
+  --link: var(--blue);
+  --link-hover: var(--paprika);
 }
 
 [data-theme="dark"] {
   --bg: var(--ink);
-  --surface: var(--near-black);
+  --surface: #0C1D1D;
   --text: var(--azure);
   --strong: var(--white);
   --accent: var(--paprika);
   --accent-2: var(--choco);
+  /* Inverted in dark mode: orange by default, blue on hover. */
+  --link: var(--paprika);
+  --link-hover: var(--blue);
 }
 
 /* Expose the semantic tokens as Tailwind utilities (bg-bg, text-text, …).
@@ -40,9 +47,11 @@
   --color-strong: var(--strong);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
 }
 @utility hyperlink {
-  @apply text-blue-600 italic hover:text-accent box-border;
+  @apply text-link italic hover:text-link-hover box-border;
  
   transition-timing-function: cubic-bezier(0.6, 0.4, 0.4, 1);
 
@@ -68,6 +77,53 @@
   transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease,
     fill 0.3s ease, stroke 0.3s ease;
 }
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #f09 transparent;
+    @media ( prefers-reduced-motion: no-preference ) {
+        interpolate-size: allow-keywords;
+    }
+}
+
+/* Sun sweep played on theme change: down when setting (→dark), up when rising (→light). */
+.sun-set {
+  animation: sun-set 1.2s ease both;
+}
+.sun-rise {
+  animation: sun-rise 1.2s ease both;
+}
+@keyframes sun-set {
+  0% {
+    transform: translate(-50%, -75vh);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 75vh);
+    opacity: 0;
+  }
+}
+@keyframes sun-rise {
+  0% {
+    transform: translate(-50%, 75vh);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -75vh);
+    opacity: 0;
+  }
+}
 
 /* Show only the icon matching the active theme (default/light shows the sun). */
 [data-icon-moon] {
@@ -84,6 +140,8 @@ body {
   font-family: 'IBM Plex Serif', serif;
   background-color: var(--color-bg);
   color: var(--color-text);
+  scrollbar-gutter: stable;
+  -webkit-font-smoothing: antialiased;
 }
 
 article {
