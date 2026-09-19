@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import Bonsai from '../components/illustrations/Bonsai.astro';
 import { cover } from '../lib/image';
 
 const inspirations = (await getCollection('inspo')).sort((a, b) =>
@@ -9,6 +10,7 @@ const inspirations = (await getCollection('inspo')).sort((a, b) =>
 ---
 
 <Layout title="Inspirations" mod="inspirations">
+	<Bonsai slot="illustration" />
 	<section class="mt-8 mx-5">
 		<ul class="mt-6 space-y-6">
 			{
