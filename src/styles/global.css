@@ -72,7 +72,7 @@
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: #f09 transparent;
+    scrollbar-color: #3248a8 transparent;
     /* Reserve the scrollbar gutter on both sides so centered content doesn't
        shift between short (no scrollbar) and long (scrollbar) pages. */
     scrollbar-gutter: stable both-edges;
