@@ -28,6 +28,24 @@ const showBack = Astro.url.pathname !== '/';
 		<title>{title}</title>
 	</head>
   <body class="flex flex-col min-h-svh">
+    <div
+      data-scroll-fade
+      class="fixed inset-x-0 bottom-0 h-40 pointer-events-none bg-linear-to-t from-azure to-transparent transition-opacity duration-300"
+    ></div>
+    <script>
+      // Hide the bottom fade once scrolled to the very bottom of the page.
+      const fade = document.querySelector('[data-scroll-fade]');
+      if (fade) {
+        const update = () => {
+          const atBottom =
+            window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1;
+          fade.style.opacity = atBottom ? '0' : '1';
+        };
+        update();
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+      }
+    </script>
     <div class="w-full max-w-2xl mx-auto grow">
       <div class="header mt-6 sans flex">
         <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
