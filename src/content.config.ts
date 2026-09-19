@@ -9,6 +9,8 @@ const blog = defineCollection({
 		pubDate: z.coerce.date(),
 		// Optional: attach this post to a project in the `projects` collection.
 		project: reference('projects').optional(),
+		// Optional cover image; a placeholder is used when omitted.
+		image: z.string().optional(),
 	}),
 });
 
@@ -18,6 +20,8 @@ const projects = defineCollection({
 		title: z.string(),
 		description: z.string().optional(),
 		pubDate: z.coerce.date().optional(),
+		// Optional cover image; a placeholder is used when omitted.
+		image: z.string().optional(),
 	}),
 });
 
@@ -29,6 +33,8 @@ const tools = defineCollection({
 		description: z.string().optional(),
 		// Optional: date added, so bookmarks can surface in the home "latest" feed.
 		pubDate: z.coerce.date().optional(),
+		// Optional cover image; a placeholder is used when omitted.
+		image: z.string().optional(),
 	}),
 });
 
@@ -41,6 +47,8 @@ const inspo = defineCollection({
 		description: z.string().optional(),
 		// Optional: date added, so inspirations can surface in the home "latest" feed.
 		pubDate: z.coerce.date().optional(),
+		// Optional cover image; a placeholder is used when omitted.
+		image: z.string().optional(),
 	}),
 });
 

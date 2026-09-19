@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { cover } from '../lib/image';
 
 const [blog, projects, tools, inspo] = await Promise.all([
 	getCollection('blog'),
@@ -29,6 +30,7 @@ const latest = sources
 				description: e.data.description,
 				date: e.data.pubDate,
 				href: href(e),
+				image: cover(e.data.image),
 				external,
 				// Blog posts may be tagged with the project they belong to.
 				project:
@@ -47,8 +49,7 @@ const latest = sources
 		<ul class="mt-6 space-y-6">
 			{
 				latest.map((item) => (
-					<li class="group flex items-start gap-3">
-						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-text/40 transition-colors group-hover:border-accent-2 group-hover:bg-accent-2" />
+					<li class="group">
 						<a
 							href={item.href}
 							target={item.external ? '_blank' : undefined}
@@ -69,6 +70,12 @@ const latest = sources
 								)}
 							</div>
 							{item.description && <p class="mt-1 text-text/80">{item.description}</p>}
+							<img
+								src={item.image}
+								alt=""
+								loading="lazy"
+								class="mt-3 w-full aspect-video rounded-lg object-cover border border-text/15 bg-surface"
+							/>
 						</a>
 					</li>
 				))
