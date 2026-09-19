@@ -1,0 +1,17 @@
+---
+interface Props {
+	tag?: string;
+  href?: string;
+  a_class?: string;
+  div_class?: string;
+}
+
+const { tag= '', href = '', a_class = '', div_class = ''} = Astro.props;
+
+---
+<div class={"hypercon relative group w-max min-w-max py-4 " + div_class}>
+  <a class={"hyperlink px-4 py-4 group-hover:border-paprika " + a_class} href={'/' + href}>{tag}</a>
+  <div class="scale-x-100 h-px rounded w-full absolute bottom-0 right-0 bg-inkblack "></div>
+  <div class="after:scale-x-0 after:h-px after:rounded after:w-full after:origin-center after:duration-100
+    after:absolute after:bottom-0 after:right-0 after:bg-paprika group-hover:after:scale-x-100"></div>
+</div>

@@ -1,24 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import Hypercon from '../components/Hypercon.astro';
 ---
 
 <Layout title="Home">
   <div class="flex flex-col items-center mt-40 italic">
     hyperlinks
     <div class="flex flex-col bg-teal-50 items-center border w-50 mt-1 rounded mx-4 transition-shadow transition-colors shadow-2xl">
-      <div class="border-b w-max min-w-max py-4">
-        <a class="hyperlink px-6 py-4" href="/blog">blogs</a>
-      </div>
-      <div class="border-b py-4 w-max mx-4 min-w-max">
-        <a class="hyperlink py-4 px-4" href="tools">bookmarks & tools</a>
-      </div>
-      <div class="border-b py-4 w-max px-2 min-w-max">
-        <a class="hyperlink py-4 px-4" href="projects">projects</a>
-      </div>
-      <div class="py-4">
-        <a class="hyperlink py-4 px-6" href="inspo">inspirations</a>
-      </div>
+      <Hypercon tag='blogs' href='blog' a_class='px-6'/>
+      <Hypercon tag='bookmarks & tools' href='tools' />
+      <Hypercon tag='projects' href="projects" />
+      <Hypercon tag='inspirations' href="inspo" div_class="mb-6"/>
     </div> 
   </div>
   <div class="flex flex-col mt-16 items-center italic">

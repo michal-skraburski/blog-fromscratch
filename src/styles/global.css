@@ -10,9 +10,20 @@
 }
 @utility hyperlink {
   @apply text-blue-600 italic hover:font-bold hover:text-paprika box-border;
-  
+ 
   transition-timing-function: cubic-bezier(0.6, 0.4, 0.4, 1);
+
 }
+@utility hyper-b {
+  &:after {
+    content: '';
+    transition: width 0.3. ease-in-out;
+    background-color: var(--color-paprika);
+    position: absolute;
+    border-bottom: var(--color-paprika) 1px solid;
+  }
+}
+
 .sans {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter Variable', system-ui, sans-serif;
 }
