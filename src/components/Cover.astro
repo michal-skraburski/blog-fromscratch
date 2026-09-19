@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import { PLACEHOLDER } from '../lib/image';
+
+interface Props {
+	// Content-collection cover image (optimized), or undefined for the placeholder.
+	image?: ImageMetadata;
+	alt?: string;
+	class?: string;
+}
+
+const { image, alt = '', class: className } = Astro.props;
+---
+
+{
+	image ? (
+		<Image src={image} alt={alt} format="avif" loading="lazy" class={className} />
+	) : (
+		<img src={PLACEHOLDER} alt={alt} loading="lazy" class={className} />
+	)
+}

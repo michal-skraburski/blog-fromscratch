@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import { cover } from '../lib/image';
+import Cover from '../components/Cover.astro';
 
 const [blog, projects, tools, inspo] = await Promise.all([
 	getCollection('blog'),
@@ -30,7 +30,7 @@ const latest = sources
 				description: e.data.description,
 				date: e.data.pubDate,
 				href: href(e),
-				image: cover(e.data.image),
+				image: e.data.image,
 				external,
 				// Blog posts may be tagged with the project they belong to.
 				project:
@@ -70,10 +70,8 @@ const latest = sources
 								)}
 							</div>
 							{item.description && <p class="mt-1 text-text/80">{item.description}</p>}
-							<img
-								src={item.image}
-								alt=""
-								loading="lazy"
+							<Cover
+								image={item.image}
 								class="mt-3 w-full aspect-video rounded-lg object-cover border border-text/15 bg-surface"
 							/>
 						</a>
