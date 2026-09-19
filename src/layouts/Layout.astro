@@ -30,7 +30,7 @@ const showBack = Astro.url.pathname !== '/';
   <body class="flex flex-col min-h-svh">
     <div
       data-scroll-fade
-      class="fixed inset-x-0 bottom-0 h-40 pointer-events-none bg-linear-to-t from-azure to-transparent transition-opacity duration-300"
+      class="fixed inset-x-0 bottom-0 h-40 pointer-events-none bg-linear-to-t from-bg to-transparent transition-opacity duration-300"
     ></div>
     <script>
       // Hide the bottom fade once scrolled to the very bottom of the page.
@@ -48,12 +48,12 @@ const showBack = Astro.url.pathname !== '/';
     </script>
     <div class="w-full max-w-2xl mx-auto grow">
       <div class="header mt-6 sans flex">
-        <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
+        <a href="/" class="text-4xl w-max max-w-3xl font-bold text-accent cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
         {showBack && (
           <a
             href="/"
             data-back
-            class="hyperlink not-italic inline-flex items-center gap-1 ml-auto mb-2 text-inkblack/70 transition-colors hover:text-choco"
+            class="hyperlink not-italic inline-flex items-center gap-1 ml-auto mb-2 text-text/70 transition-colors hover:text-accent-2"
           >&larr; Back</a>
         )}
       </div>
@@ -71,7 +71,7 @@ const showBack = Astro.url.pathname !== '/';
       <slot/>
     </div>
     <svg
-      class="fixed top-1/2 right-0 -translate-y-1/2 w-20 h-40 text-inkblack/70 pointer-events-none select-none"
+      class="fixed top-1/2 right-0 -translate-y-1/2 w-20 h-40 text-text/70 pointer-events-none select-none"
       viewBox="0 0 100 200"
       fill="none"
       stroke="currentColor"

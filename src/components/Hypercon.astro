@@ -10,8 +10,8 @@ const { tag= '', href = '', a_class = '', div_class = ''} = Astro.props;
 
 ---
 <div class={"hypercon relative group w-max min-w-max py-4 " + div_class}>
-  <a class={"hyperlink hover:font-bold px-4 py-4 group-hover:border-paprika " + a_class} href={'/' + href}>{tag}</a>
-  <div class="scale-x-100 h-px rounded w-full absolute bottom-0 right-0 bg-inkblack "></div>
+  <a class={"hyperlink hover:font-bold px-4 py-4 group-hover:border-accent " + a_class} href={'/' + href}>{tag}</a>
+  <div class="scale-x-100 h-px rounded w-full absolute bottom-0 right-0 bg-text "></div>
   <div class="after:scale-x-0 after:h-px after:rounded after:w-full after:origin-center after:duration-100
-    after:absolute after:bottom-0 after:right-0 after:bg-paprika group-hover:after:scale-x-100"></div>
+    after:absolute after:bottom-0 after:right-0 after:bg-accent group-hover:after:scale-x-100"></div>
 </div>

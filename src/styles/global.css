@@ -1,16 +1,47 @@
 @import "tailwindcss";
 
-@theme {
-  --color-paprika: #e4572e;
-  --color-choco: #DD7230;
-  --color-azure: #ECF8F8;
-  --color-black: #010400;
-  --color-inkblack: #040F0F;
-  --color-fade: #ffffff;
+/* Raw brand palette — reused to build the themes below. */
+:root {
+  --paprika: #e4572e;
+  --choco: #DD7230;
+  --azure: #ECF8F8;
+  --near-black: #010400;
+  --ink: #040F0F;
+  --white: #ffffff;
+}
 
+/* Semantic tokens. Override these per theme to hot-swap dark/light. */
+:root,
+[data-theme="light"] {
+  --bg: var(--azure);
+  --surface: var(--white);
+  --text: var(--ink);
+  --strong: var(--near-black);
+  --accent: var(--paprika);
+  --accent-2: var(--choco);
+}
+
+[data-theme="dark"] {
+  --bg: var(--ink);
+  --surface: var(--near-black);
+  --text: var(--azure);
+  --strong: var(--white);
+  --accent: var(--paprika);
+  --accent-2: var(--choco);
+}
+
+/* Expose the semantic tokens as Tailwind utilities (bg-bg, text-text, …).
+   `inline` keeps the var indirection so runtime overrides above take effect. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-strong: var(--strong);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
 }
 @utility hyperlink {
-  @apply text-blue-600 italic hover:text-paprika box-border;
+  @apply text-blue-600 italic hover:text-accent box-border;
  
   transition-timing-function: cubic-bezier(0.6, 0.4, 0.4, 1);
 
@@ -19,9 +50,9 @@
   &:after {
     content: '';
     transition: width 0.3. ease-in-out;
-    background-color: var(--color-paprika);
+    background-color: var(--color-accent);
     position: absolute;
-    border-bottom: var(--color-paprika) 1px solid;
+    border-bottom: var(--color-accent) 1px solid;
   }
 }
 
@@ -31,7 +62,8 @@
 
 body {
   font-family: 'IBM Plex Serif', serif;
-  background-color: var(--color-azure);
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 article {
