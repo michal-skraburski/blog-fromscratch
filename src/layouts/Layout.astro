@@ -43,6 +43,24 @@ const showBack = Astro.url.pathname !== '/';
 	</head>
   <body class="flex flex-col min-h-svh">
     <div
+      data-sun
+      aria-hidden="true"
+      class="fixed left-3/4 top-1/2 z-40 w-64 h-64 opacity-0 pointer-events-none select-none"
+    >
+      <svg viewBox="0 0 200 200" class="w-full h-full">
+        <defs>
+          <radialGradient id="sun-haze" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFE680" stop-opacity="0.9" />
+            <stop offset="35%" stop-color="#FFD400" stop-opacity="0.5" />
+            <stop offset="70%" stop-color="#FFD400" stop-opacity="0.12" />
+            <stop offset="100%" stop-color="#FFD400" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="100" fill="url(#sun-haze)" />
+        <circle cx="100" cy="100" r="42" fill="#FFD400" />
+      </svg>
+    </div>
+    <div
       data-scroll-fade
       class="fixed inset-x-0 bottom-0 h-40 pointer-events-none bg-linear-to-t from-bg to-transparent transition-opacity duration-300"
     ></div>
@@ -132,12 +150,21 @@ const showBack = Astro.url.pathname !== '/';
       const root = document.documentElement;
       const toggle = document.querySelector('[data-theme-toggle]');
       const label = document.querySelector('[data-theme-label]');
+      const sun = document.querySelector('[data-sun]');
       const sync = () => {
         if (label) label.textContent = root.dataset.theme === 'dark' ? 'Dark' : 'Light';
+      };
+      const playSun = (next) => {
+        if (!sun) return;
+        // Sun sets (down) heading into dark, rises (up) heading into light.
+        sun.classList.remove('sun-set', 'sun-rise');
+        void sun.offsetWidth; // restart the animation if it is still running
+        sun.classList.add(next === 'dark' ? 'sun-set' : 'sun-rise');
       };
       sync();
       toggle?.addEventListener('click', () => {
         const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        playSun(next);
         root.dataset.theme = next;
         localStorage.setItem('theme', next);
         sync();
