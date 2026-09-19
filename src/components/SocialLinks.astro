@@ -2,9 +2,10 @@
 interface Props {
 	linkClass?: string;
 	iconClass?: string;
+	underline?: boolean;
 }
 
-const { linkClass = 'hyperlink', iconClass = 'w-6 h-6' } = Astro.props;
+const { linkClass = 'hyperlink', iconClass = 'w-6 h-6', underline = false } = Astro.props;
 
 const socials = [
 	{
@@ -30,8 +31,12 @@ const socials = [
 			<svg class={iconClass} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 				<path d={social.path} />
 			</svg>
-			<span class="scale-x-100 h-px rounded w-full absolute bottom-0 right-0 bg-text" />
-			<span class="after:scale-x-0 after:h-px after:rounded after:w-full after:origin-center after:transition-transform after:duration-300 after:absolute after:bottom-0 after:right-0 after:bg-link-hover group-hover:after:scale-x-100" />
+			{underline && (
+				<>
+					<span class="scale-x-100 h-px rounded w-full absolute bottom-0 right-0 bg-text" />
+					<span class="after:scale-x-0 after:h-px after:rounded after:w-full after:origin-center after:transition-transform after:duration-300 after:absolute after:bottom-0 after:right-0 after:bg-link-hover group-hover:after:scale-x-100" />
+				</>
+			)}
 		</a>
 	))
 }
