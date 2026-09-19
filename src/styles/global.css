@@ -9,12 +9,9 @@
 
 }
 @utility hyperlink {
-  @apply text-blue-600 italic transition-colors;
+  @apply text-blue-600 italic hover:font-bold hover:text-paprika box-border;
   
-  transition-timing-function: cubic-bezier(0.6, 0.4, 0.2, 1);
-  &:hover {
-    color:var(--color-choco);
-  }
+  transition-timing-function: cubic-bezier(0.6, 0.4, 0.4, 1);
 }
 .sans {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter Variable', system-ui, sans-serif;
