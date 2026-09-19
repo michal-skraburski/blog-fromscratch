@@ -104,7 +104,8 @@ const showBack = Astro.url.pathname !== '/';
         </script>
         <slot/>
       </div>
-      <aside class="shrink-0 self-start md:sticky md:top-6 mt-10 md:mt-24">
+      <aside class="shrink-0 self-start md:sticky md:top-6 mt-10 md:mt-24 flex flex-col gap-10">
+        <slot name="aside" />
         <SiteNav />
       </aside>
     </div>

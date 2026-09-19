@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Toc from '../../components/Toc.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -11,11 +12,12 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 const project = post.data.project ? await getEntry(post.data.project) : undefined;
 ---
 
 <Layout title={post.data.title} mod="blogs">
+	<Toc slot="aside" headings={headings} />
 	<article class="pl-2 my-10">
 		<h1 class="text-3xl font-bold text-accent-2">{post.data.title}</h1>
 		<p class="pl-2 mt-1 text-sm text-text">

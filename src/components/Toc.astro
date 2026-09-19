@@ -1,0 +1,33 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+	headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+// Show the article's section headings (h2/h3); skip the page title (h1).
+const items = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{
+	items.length > 0 && (
+		<div class="flex flex-col items-center italic sans">
+			contents
+			<nav class="flex flex-col bg-surface border border-text/15 w-50 mt-2 rounded transition-shadow transition-colors shadow-xl py-4">
+				{items.map((heading) => (
+					<a
+						href={`#${heading.slug}`}
+						class={
+							'hyperlink block px-5 py-1.5 ' +
+							(heading.depth === 3 ? 'pl-9 text-sm' : '')
+						}
+					>
+						{heading.text}
+					</a>
+				))}
+			</nav>
+		</div>
+	)
+}
