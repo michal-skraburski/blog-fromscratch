@@ -13,6 +13,9 @@ import '@fontsource/ibm-plex-serif/700.css';
 import SocialLinks from '../components/SocialLinks.astro';
 
 const { title = 'from scratch -', mod = ''} = Astro.props;
+
+// Hide the back button on the home page.
+const showBack = Astro.url.pathname !== '/';
 ---
 
 <html lang="en">
@@ -25,10 +28,28 @@ const { title = 'from scratch -', mod = ''} = Astro.props;
 		<title>{title}</title>
 	</head>
   <body class="flex flex-col min-h-svh">
-    <div class="w-full max-w-3xl mx-auto grow">
-      <div class="header mt-6 sans">
+    <div class="w-full max-w-2xl mx-auto grow">
+      <div class="header mt-6 sans flex">
         <a href="/" class="text-4xl w-max max-w-3xl font-bold text-paprika cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
+        {showBack && (
+          <a
+            href="/"
+            data-back
+            class="hyperlink not-italic inline-flex items-center gap-1 ml-auto mb-2 text-inkblack/70 transition-colors hover:text-choco"
+          >&larr; Back</a>
+        )}
       </div>
+      <script>
+        // Go back in history when possible; fall back to the home link.
+        document.querySelectorAll('a[data-back]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            if (window.history.length > 1) {
+              e.preventDefault();
+              window.history.back();
+            }
+          });
+        });
+      </script>
       <slot/>
     </div>
     <svg
