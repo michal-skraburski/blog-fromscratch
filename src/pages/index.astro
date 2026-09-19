@@ -1,23 +1,78 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import SocialLinks from '../components/SocialLinks.astro';
-import Hypercon from '../components/Hypercon.astro';
+
+const [blog, projects, tools, inspo] = await Promise.all([
+	getCollection('blog'),
+	getCollection('projects'),
+	getCollection('tools'),
+	getCollection('inspo'),
+]);
+
+// Map project id -> title, to tag blog posts with their project.
+const projectTitles = new Map(projects.map((p) => [p.id, p.data.title]));
+
+// Unified feed across every collection that carries a date.
+const sources = [
+	{ items: blog, href: (e) => `/blog/${e.id}`, external: false, kind: 'blog' },
+	{ items: projects, href: (e) => `/projects/${e.id}`, external: false, kind: 'project' },
+	{ items: tools, href: (e) => e.data.url, external: true, kind: 'tool' },
+	{ items: inspo, href: (e) => e.data.url, external: true, kind: 'inspo' },
+];
+
+const latest = sources
+	.flatMap(({ items, href, external, kind }) =>
+		items
+			.filter((e) => e.data.pubDate)
+			.map((e) => ({
+				title: e.data.title,
+				description: e.data.description,
+				date: e.data.pubDate,
+				href: href(e),
+				external,
+				// Blog posts may be tagged with the project they belong to.
+				project:
+					kind === 'blog' && e.data.project && projectTitles.has(e.data.project.id)
+						? projectTitles.get(e.data.project.id)
+						: null,
+			})),
+	)
+	.sort((a, b) => b.date.valueOf() - a.date.valueOf())
+	.slice(0, 5);
 ---
 
 <Layout title="Home">
-  <div class="flex flex-col items-center mt-40 italic">
-    hyperlinks
-    <div class="flex flex-col bg-surface items-center border border-text/15 w-50 mt-2 rounded mx-4 transition-shadow transition-colors shadow-2xl">
-      <Hypercon tag='blogs' href='blog' a_class='px-6'/>
-      <Hypercon tag='bookmarks & tools' href='tools' />
-      <Hypercon tag='projects' href="projects" />
-      <Hypercon tag='inspirations' href="inspo" div_class="mb-6"/>
-    </div> 
-  </div>
-  <div class="flex flex-col mt-16 items-center italic">
-    connections 
-    <div class="flex flex-col mt-2 bg-surface items-center border border-text/15 rounded shadow-2xl w-20 pb-5">
-      <SocialLinks linkClass="hyperlink py-4 px-4" iconClass="w-6 h-6" underline />
-    </div>
-  </div>
+	<section class="mt-8 mx-5">
+		<h1 class="text-sm font-semibold uppercase tracking-wide text-text/50">Latest</h1>
+		<ul class="mt-6 space-y-6">
+			{
+				latest.map((item) => (
+					<li class="group flex items-start gap-3">
+						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-text/40 transition-colors group-hover:border-accent-2 group-hover:bg-accent-2" />
+						<a
+							href={item.href}
+							target={item.external ? '_blank' : undefined}
+							rel={item.external ? 'noopener noreferrer' : undefined}
+							class="group block"
+						>
+							<h2 class="text-xl font-semibold text-text transition-colors group-hover:text-accent-2">
+								{item.title}
+							</h2>
+							<div class="text-sm text-text/60">
+								<time datetime={item.date.toISOString()}>
+									{item.date.toLocaleDateString('en-US', { dateStyle: 'long' })}
+								</time>
+								{item.project && (
+									<span class="ml-2 rounded-full border border-text/20 px-2 py-0.5 text-xs text-text/70">
+										{item.project}
+									</span>
+								)}
+							</div>
+							{item.description && <p class="mt-1 text-text/80">{item.description}</p>}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
 </Layout>

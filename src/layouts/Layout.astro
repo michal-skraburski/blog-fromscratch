@@ -11,6 +11,7 @@ import '@fontsource-variable/inter/wght.css';
 import '@fontsource/ibm-plex-serif/400.css';
 import '@fontsource/ibm-plex-serif/700.css';
 import SocialLinks from '../components/SocialLinks.astro';
+import SiteNav from '../components/SiteNav.astro';
 
 const { title = 'from scratch -', mod = ''} = Astro.props;
 
@@ -78,29 +79,34 @@ const showBack = Astro.url.pathname !== '/';
         window.addEventListener('resize', update);
       }
     </script>
-    <div class="w-full max-w-2xl mx-auto grow">
-      <div class="header mt-6 sans flex">
-        <a href="/" class="text-4xl w-max max-w-3xl font-bold text-accent cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
-        {showBack && (
-          <a
-            href="/"
-            data-back
-            class="hyperlink not-italic inline-flex items-center gap-1 ml-auto mb-2 text-text/70 transition-colors hover:text-accent-2"
-          >&larr; Back</a>
-        )}
-      </div>
-      <script>
-        // Go back in history when possible; fall back to the home link.
-        document.querySelectorAll('a[data-back]').forEach((el) => {
-          el.addEventListener('click', (e) => {
-            if (window.history.length > 1) {
-              e.preventDefault();
-              window.history.back();
-            }
+    <div class="w-full max-w-5xl mx-auto grow px-4 flex flex-col md:flex-row gap-10">
+      <div class="grow min-w-0 max-w-2xl">
+        <div class="header mt-6 sans flex">
+          <a href="/" class="text-4xl w-max max-w-3xl font-bold text-accent cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
+          {showBack && (
+            <a
+              href="/"
+              data-back
+              class="hyperlink not-italic inline-flex items-center gap-1 ml-auto mb-2 text-text/70 transition-colors hover:text-accent-2"
+            >&larr; Back</a>
+          )}
+        </div>
+        <script>
+          // Go back in history when possible; fall back to the home link.
+          document.querySelectorAll('a[data-back]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+              if (window.history.length > 1) {
+                e.preventDefault();
+                window.history.back();
+              }
+            });
           });
-        });
-      </script>
-      <slot/>
+        </script>
+        <slot/>
+      </div>
+      <aside class="shrink-0 self-start md:sticky md:top-6 mt-10 md:mt-24">
+        <SiteNav />
+      </aside>
     </div>
     <svg
       class="fixed top-1/2 right-0 -translate-y-1/2 w-20 h-40 text-text/70 pointer-events-none select-none"

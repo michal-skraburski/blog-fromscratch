@@ -1,0 +1,22 @@
+---
+import SocialLinks from './SocialLinks.astro';
+import Hypercon from './Hypercon.astro';
+---
+
+<nav class="flex flex-col items-center gap-10 italic sans">
+	<div class="flex flex-col items-center">
+		hyperlinks
+		<div class="flex flex-col bg-surface items-center border border-text/15 w-50 mt-2 rounded transition-shadow transition-colors shadow-2xl">
+			<Hypercon tag="blogs" href="blog" a_class="px-6" />
+			<Hypercon tag="bookmarks & tools" href="tools" />
+			<Hypercon tag="projects" href="projects" />
+			<Hypercon tag="inspirations" href="inspo" div_class="mb-6" />
+		</div>
+	</div>
+	<div class="flex flex-col items-center">
+		connections
+		<div class="flex flex-col mt-2 bg-surface items-center border border-text/15 rounded shadow-2xl w-20 pb-5">
+			<SocialLinks linkClass="hyperlink py-4 px-4" iconClass="w-6 h-6" underline />
+		</div>
+	</div>
+</nav>

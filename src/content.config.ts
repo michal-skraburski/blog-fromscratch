@@ -27,6 +27,8 @@ const tools = defineCollection({
 		title: z.string(),
 		url: z.string().url(),
 		description: z.string().optional(),
+		// Optional: date added, so bookmarks can surface in the home "latest" feed.
+		pubDate: z.coerce.date().optional(),
 	}),
 });
 
@@ -37,6 +39,8 @@ const inspo = defineCollection({
 		url: z.string().url(),
 		author: z.string().optional(),
 		description: z.string().optional(),
+		// Optional: date added, so inspirations can surface in the home "latest" feed.
+		pubDate: z.coerce.date().optional(),
 	}),
 });
 
