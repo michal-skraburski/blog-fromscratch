@@ -15,7 +15,7 @@ const projects = (await getCollection('projects')).sort(
 					<li class="group flex items-start gap-3">
 						<span class="mt-2 shrink-0 w-2.5 h-2.5 rounded-full border border-inkblack/40 transition-colors group-hover:border-choco group-hover:bg-choco"></span>
 						<a href={`/projects/${project.id}`} class="group block">
-							<h2 class="text-xl font-semibold text-inkblack group-hover:text-choco">
+							<h2 class="text-xl font-semibold text-inkblack transition-colors group-hover:text-choco">
 								{project.data.title}
 							</h2>
 							{project.data.description && (

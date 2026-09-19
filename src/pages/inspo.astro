@@ -20,7 +20,7 @@ const inspirations = (await getCollection('inspo')).sort((a, b) =>
 							rel="noopener noreferrer"
 							class="group block"
 						>
-							<h2 class="text-xl font-semibold text-inkblack group-hover:text-choco">
+							<h2 class="text-xl font-semibold text-inkblack transition-colors group-hover:text-choco">
 								{item.data.title}
 							</h2>
 							{item.data.author && item.data.author !== item.data.title && (
