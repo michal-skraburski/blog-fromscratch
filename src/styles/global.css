@@ -8,13 +8,14 @@
   --near-black: #010400;
   --ink: #040F0F;
   --white: #ffffff;
+  --teal-50: #f0fdfa;
 }
 
 /* Semantic tokens. Override these per theme to hot-swap dark/light. */
 :root,
 [data-theme="light"] {
   --bg: var(--azure);
-  --surface: var(--white);
+  --surface: var(--teal-50);
   --text: var(--ink);
   --strong: var(--near-black);
   --accent: var(--paprika);
@@ -58,6 +59,25 @@
 
 .sans {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter Variable', system-ui, sans-serif;
+}
+
+/* Smoothly cross-fade colors when the theme is swapped. */
+*,
+::before,
+::after {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease,
+    fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Show only the icon matching the active theme (default/light shows the sun). */
+[data-icon-moon] {
+  display: none;
+}
+[data-theme="dark"] [data-icon-sun] {
+  display: none;
+}
+[data-theme="dark"] [data-icon-moon] {
+  display: inline;
 }
 
 body {
