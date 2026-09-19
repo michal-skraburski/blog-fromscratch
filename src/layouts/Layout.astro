@@ -82,7 +82,7 @@ const showBack = Astro.url.pathname !== '/';
     <div class="w-full max-w-5xl mx-auto grow px-4 flex flex-col md:flex-row gap-10">
       <div class="grow min-w-0 max-w-2xl">
         <div class="header mt-6 sans flex">
-          <a href="/" class="text-4xl w-max max-w-3xl font-bold text-accent cursor-pointer select-none inline">from scratch <p class="text-blue-400">{mod}</p></a>
+          <a href="/" class="text-4xl w-max max-w-3xl font-bold text-accent cursor-pointer select-none inline">from scratch <span class="text-blue-400">{mod}</span></a>
           {showBack && (
             <a
               href="/"
