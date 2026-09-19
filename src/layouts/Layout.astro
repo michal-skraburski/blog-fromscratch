@@ -26,13 +26,18 @@ const showBack = Astro.url.pathname !== '/';
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<!-- Render-blocking on purpose: resolve the theme before first paint so there is no flash. -->
 		<script is:inline>
-			// Apply the saved (or system) theme before first paint to avoid a flash.
 			(() => {
 				const saved = localStorage.getItem('theme');
-				const theme =
-					saved ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				// The system default is authoritative when the user has never chosen one.
+				const system = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				const theme = saved ?? system;
+
 				document.documentElement.dataset.theme = theme;
+
+				// Persist only when the stored value needs to change (e.g. first visit).
+				if (saved !== theme) localStorage.setItem('theme', theme);
 			})();
 		</script>
 	</head>
